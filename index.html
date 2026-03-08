@@ -17,3 +17,19 @@
 
 </body>
 </html>
+results.innerHTML += `
+<div>
+<h3><a href="${p.url}">${p.title}</a></h3>
+<button onclick="bookmark('${p.title}','${p.url}')">Bookmark</button>
+</div>
+`;
+async function bookmark(title,url){
+
+await fetch("http://localhost:5000/bookmark",{
+method:"POST",
+headers:{ "Content-Type":"application/json" },
+body: JSON.stringify({title:title,url:url})
+});
+
+alert("Bookmarked!");
+}
